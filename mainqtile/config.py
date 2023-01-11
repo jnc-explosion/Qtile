@@ -89,6 +89,9 @@ keys = [
     Key([mod], "l", lazy.run_extension(extension.RunCommand(
         command='xscreensaver-command --lock',
     )), desc="Screen lock with xscreensaver"),
+    Key([mod], "t", lazy.run_extension(extension.RunCommand(
+        command='firefox-developer-edition --new-window https://tweetdeck.twitter.com/',
+    )), desc="Open Tweetdeck with firefox-developer-edition"),
     Key([mod], "XF86AudioMute", lazy.run_extension(extension.RunCommand(
         command='pactl set-sink-mute @DEFAULT_SINK@ toggle',
     )), desc="get mutable with pulseaudio"),
@@ -231,8 +234,336 @@ screens = [
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
-    Screen(),
-    Screen(),
+    Screen(
+    top=bar.Bar(
+        [
+            widget.Clock(format="%m-%d %a %H:%M.%S"),
+            widget.Spacer(length=35),
+            widget.CPU(
+                font='Comic Sans MS',
+                fontshadow='#007700',
+                format='CPU: {freq_current}GHz {load_percent}%',
+            ),
+            widget.CPUGraph(),
+            widget.ThermalSensor(
+                font='Impact Condensed',
+                tag_sensor='Package id 0',
+                threshold=70.0,
+            ),
+            widget.Spacer(length=5),
+            widget.Sep(),
+            widget.Spacer(length=5),
+            widget.TextBox(
+                font='Comic Sans MS',
+                fontshadow='#000077',
+                fmt='GPU: ',
+            ),
+            widget.NvidiaSensors(
+                font='Impact Condensed',
+                fontshadow='#000077',
+                threshold=70.0,
+                foreground='#ffffff',
+                foreground_alert='#ff7000',
+            ),
+            widget.Spacer(length=5),
+            widget.Sep(),
+            widget.Spacer(length=5),
+            widget.Memory(
+                measure_mem='M',
+                font='Comic Sans MS',
+                fontshadow='#770000',
+                format='Memory: {MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}'
+            ),
+            widget.MemoryGraph(),
+            widget.Spacer(length=5),
+            widget.Sep(),
+            widget.Spacer(length=5),
+            # widget.DF(
+            #     warn_space='100',
+            # ),
+            widget.TextBox(
+                font='Comic Sans MS',
+                fontshadow='#888833',
+                fmt='Disk: ',
+            ),
+            widget.HDDBusyGraph(),
+            widget.ThermalSensor(
+                font='Impact Condensed',
+                tag_sensor='Composite',
+                threshold=65.0,
+            ),
+            widget.Spacer(length=5),
+            widget.Sep(),
+            widget.Spacer(length=5),
+            widget.TextBox(
+                font='Comic Sans MS',
+                fontshadow='#338888',
+                fmt='EtherNet: ',
+            ),
+            widget.Net(
+                font='Comic Sans MS',
+                fontshadow='#338888',
+                format='↑{up} / {down}↓',
+                prefix='M',
+            ),
+            widget.NetGraph(),
+            widget.Spacer(length=5),
+            widget.Sep(),
+            widget.Spacer(length=5),
+            widget.TextBox(
+                font='Comic Sans MS',
+                fontshadow='#883388',
+                fmt='System: ',
+            ),
+            widget.CheckUpdates(
+                font='Comic Sans MS',
+                fontshadow='#883388',
+                distro='Arch_yay',
+                no_update_string='No Updates',
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(format="%m-%d %a %H:%M.%S"),
+        ],
+        24,
+        # background="#555555"
+    ),
+    ),
+    Screen(
+    top=bar.Bar(
+        [
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+        ],
+        24,
+        # background="#555555"
+    ),
+    bottom=bar.Bar(
+        [
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+        ],
+        24,
+        # background="#555555"
+    ),
+    right=bar.Bar(
+        [
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+        ],
+        24,
+        # background="#555555"
+    ),
+    left=bar.Bar(
+        [
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(
+                font='Monospace',
+                format="%H:%M.%S",
+            ),
+        ],
+        24,
+        # background="#555555"
+    ),
+    ),
     Screen(
     top=bar.Bar(
         [
@@ -319,6 +650,8 @@ screens = [
                 distro='Arch_yay',
                 no_update_string='No Updates',
             ),
+            widget.Spacer(length=bar.STRETCH),
+            widget.Clock(format="%m-%d %a %H:%M.%S"),
         ],
         24,
         # background="#555555"
@@ -327,7 +660,7 @@ screens = [
     y=0,
     width=600,
     height=480
-  ),
+    ),
 ]
 
 # Drag floating layouts.
